@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="option_text" Type="nvarchar" MaxLength="500" />
+          <Property Name="question_id" Type="int" Nullable="false" />
+          <Property Name="is_correct_option" Type="bit" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question_text" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SubmittedAnswers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_id" Type="int" />
+          <Property Name="question_id" Type="int" />
+          <Property Name="option_id" Type="int" />
+          <Property Name="submitted_option_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Emp">
+          <Key>
+            <PropertyRef Name="EmpId" />
+          </Key>
+          <Property Name="EmpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Salary" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Options__questio__66603565">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="Options" Type="Self.Options" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Options">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Submitted__emp_i__693CA210">
+          <End Role="Tbl_Emp" Type="Self.Tbl_Emp" Multiplicity="0..1" />
+          <End Role="SubmittedAnswers" Type="Self.SubmittedAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Emp">
+              <PropertyRef Name="EmpId" />
+            </Principal>
+            <Dependent Role="SubmittedAnswers">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Submitted__optio__6B24EA82">
+          <End Role="Options" Type="Self.Options" Multiplicity="0..1" />
+          <End Role="SubmittedAnswers" Type="Self.SubmittedAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubmittedAnswers">
+              <PropertyRef Name="option_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Submitted__quest__6A30C649">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="SubmittedAnswers" Type="Self.SubmittedAnswers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubmittedAnswers">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestDbModelStoreContainer">
+          <EntitySet Name="Options" EntityType="Self.Options" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubmittedAnswers" EntityType="Self.SubmittedAnswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Emp" EntityType="Self.Tbl_Emp" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Options__questio__66603565" Association="Self.FK__Options__questio__66603565">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Options" EntitySet="Options" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Submitted__emp_i__693CA210" Association="Self.FK__Submitted__emp_i__693CA210">
+            <End Role="Tbl_Emp" EntitySet="Tbl_Emp" />
+            <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Submitted__optio__6B24EA82" Association="Self.FK__Submitted__optio__6B24EA82">
+            <End Role="Options" EntitySet="Options" />
+            <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Submitted__quest__6A30C649" Association="Self.FK__Submitted__quest__6A30C649">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Option">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="option_text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="question_id" Type="Int32" Nullable="false" />
+          <Property Name="is_correct_option" Type="Boolean" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__Options__questio__66603565" FromRole="Options" ToRole="Questions" />
+          <NavigationProperty Name="SubmittedAnswers" Relationship="Self.FK__Submitted__optio__6B24EA82" FromRole="Options" ToRole="SubmittedAnswers" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question_text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Options" Relationship="Self.FK__Options__questio__66603565" FromRole="Questions" ToRole="Options" />
+          <NavigationProperty Name="SubmittedAnswers" Relationship="Self.FK__Submitted__quest__6A30C649" FromRole="Questions" ToRole="SubmittedAnswers" />
+        </EntityType>
+        <EntityType Name="SubmittedAnswer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_id" Type="Int32" />
+          <Property Name="question_id" Type="Int32" />
+          <Property Name="option_id" Type="Int32" />
+          <Property Name="submitted_option_id" Type="Int32" />
+          <NavigationProperty Name="Option" Relationship="Self.FK__Submitted__optio__6B24EA82" FromRole="SubmittedAnswers" ToRole="Options" />
+          <NavigationProperty Name="Question" Relationship="Self.FK__Submitted__quest__6A30C649" FromRole="SubmittedAnswers" ToRole="Questions" />
+          <NavigationProperty Name="Tbl_Emp" Relationship="Self.FK__Submitted__emp_i__693CA210" FromRole="SubmittedAnswers" ToRole="Tbl_Emp" />
+        </EntityType>
+        <EntityType Name="Tbl_Emp">
+          <Key>
+            <PropertyRef Name="EmpId" />
+          </Key>
+          <Property Name="EmpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salary" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SubmittedAnswers" Relationship="Self.FK__Submitted__emp_i__693CA210" FromRole="Tbl_Emp" ToRole="SubmittedAnswers" />
+        </EntityType>
+        <Association Name="FK__Options__questio__66603565">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+          <End Role="Options" Type="Self.Option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Options">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Submitted__optio__6B24EA82">
+          <End Role="Options" Type="Self.Option" Multiplicity="0..1" />
+          <End Role="SubmittedAnswers" Type="Self.SubmittedAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Options">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubmittedAnswers">
+              <PropertyRef Name="option_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Submitted__quest__6A30C649">
+          <End Role="Questions" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="SubmittedAnswers" Type="Self.SubmittedAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubmittedAnswers">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Submitted__emp_i__693CA210">
+          <End Role="Tbl_Emp" Type="Self.Tbl_Emp" Multiplicity="0..1" />
+          <End Role="SubmittedAnswers" Type="Self.SubmittedAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Emp">
+              <PropertyRef Name="EmpId" />
+            </Principal>
+            <Dependent Role="SubmittedAnswers">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Options" EntityType="Self.Option" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="SubmittedAnswers" EntityType="Self.SubmittedAnswer" />
+          <EntitySet Name="Tbl_Emp" EntityType="Self.Tbl_Emp" />
+          <AssociationSet Name="FK__Options__questio__66603565" Association="Self.FK__Options__questio__66603565">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Options" EntitySet="Options" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Submitted__optio__6B24EA82" Association="Self.FK__Submitted__optio__6B24EA82">
+            <End Role="Options" EntitySet="Options" />
+            <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Submitted__quest__6A30C649" Association="Self.FK__Submitted__quest__6A30C649">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Submitted__emp_i__693CA210" Association="Self.FK__Submitted__emp_i__693CA210">
+            <End Role="Tbl_Emp" EntitySet="Tbl_Emp" />
+            <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestDbModelStoreContainer" CdmEntityContainer="TestDbEntities">
+          <EntitySetMapping Name="Options">
+            <EntityTypeMapping TypeName="TestDbModel.Option">
+              <MappingFragment StoreEntitySet="Options">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="option_text" ColumnName="option_text" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="is_correct_option" ColumnName="is_correct_option" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="TestDbModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="question_text" ColumnName="question_text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubmittedAnswers">
+            <EntityTypeMapping TypeName="TestDbModel.SubmittedAnswer">
+              <MappingFragment StoreEntitySet="SubmittedAnswers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="option_id" ColumnName="option_id" />
+                <ScalarProperty Name="submitted_option_id" ColumnName="submitted_option_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Emp">
+            <EntityTypeMapping TypeName="TestDbModel.Tbl_Emp">
+              <MappingFragment StoreEntitySet="Tbl_Emp">
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

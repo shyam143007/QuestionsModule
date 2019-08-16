@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b5a13252aa3840fab3bfa6e186924e90" Name="Diagram1">
+        <EntityTypeShape EntityType="TestDbModel.Option" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDbModel.Question" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDbModel.SubmittedAnswer" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestDbModel.Tbl_Emp" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="TestDbModel.FK__Options__questio__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDbModel.FK__Submitted__optio__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDbModel.FK__Submitted__quest__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="TestDbModel.FK__Submitted__emp_i__693CA210" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
