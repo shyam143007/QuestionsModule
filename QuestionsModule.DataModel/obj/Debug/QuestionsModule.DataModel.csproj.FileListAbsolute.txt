@@ -1,0 +1,10 @@
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\bin\Debug\QuestionsModule.DataModel.dll.config
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\bin\Debug\QuestionsModule.DataModel.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\bin\Debug\QuestionsModule.DataModel.pdb
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\bin\Debug\EntityFramework.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\bin\Debug\EntityFramework.SqlServer.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\bin\Debug\EntityFramework.xml
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\bin\Debug\EntityFramework.SqlServer.xml
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\obj\Debug\QuestionsModule.DataModel.csprojResolveAssemblyReference.cache
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\obj\Debug\QuestionsModule.DataModel.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.DataModel\obj\Debug\QuestionsModule.DataModel.pdb

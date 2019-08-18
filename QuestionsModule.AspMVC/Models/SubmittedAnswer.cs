@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace QuestionsModule.AspMVC
+namespace QuestionsModule.AspMVC.Models
 {
     public class SubmittedAnswer
     {
@@ -11,6 +11,8 @@ namespace QuestionsModule.AspMVC
         public int id { get; set; }
         public int emp_id { get; set; }
         public int question_id { get; set; }
+        public int submitted_option_id { get; set; }
         public int option_id { get; set; }
+
     }
 }

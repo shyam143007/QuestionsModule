@@ -1,0 +1,12 @@
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\QuestionsModule.Repository.dll.config
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\QuestionsModule.Repository.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\QuestionsModule.Repository.pdb
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\EntityFramework.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\EntityFramework.SqlServer.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\QuestionsModule.DataModel.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\QuestionsModule.DataModel.pdb
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\EntityFramework.xml
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\bin\Debug\EntityFramework.SqlServer.xml
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\obj\Debug\QuestionsModule.Repository.csprojResolveAssemblyReference.cache
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\obj\Debug\QuestionsModule.Repository.dll
+G:\Shyam\QuestionsModule.Demo\QuestionsModule\QuestionsModule.Repository\obj\Debug\QuestionsModule.Repository.pdb

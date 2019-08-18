@@ -1,0 +1,140 @@
+﻿@using QuestionsModule.AspMVC.Models;
+@using System.Collections.Generic;
+
+
+<style>
+    .grid{
+        display: inline-grid;
+        float:right ;
+    }
+
+    @@media screen and (min-width: 320px) and (max-width: 399px){
+        .grid{
+            display: table;
+            float:none;
+    }
+    }
+    @@media screen and (min-width: 400px) and (max-width: 1000px){
+      .grid{
+        display: inline-grid;
+        float:right ;
+    }
+    }
+</style>
+
+@model List<Questions>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <div class="grid">
+        <div>
+            <b class="text-danger h4">*</b>
+            <label for="emp_id">Employee Id</label>
+            <input type="text" class="form-control" name="emp_id" id="emp_id" value="" placeholder="Employee Id" />
+        </div>
+        <div>
+            <b class="text-danger h4">*</b>
+            <label for="emp_name">Employee Name</label>
+            <input type="text" class="form-control" name="emp_name" id="emp_name" value="" placeholder="Employee Name" />
+        </div>
+    </div>
+
+               <div class="clearfix"></div>
+    <h2 class="text-center">Questions</h2>
+
+    <div>
+        <hr />
+        @foreach (var question in Model)
+        {
+
+            <div class="col-md-12 ">
+                <input type="hidden" class="question_id" value="@question.Id" />
+                @Html.DisplayFor(model => question.Id).
+                @Html.DisplayFor(model => question.Question_Text)
+
+                @Html.Partial("Options", question.Options)
+            </div>
+        }
+    </div>
+    <footer>
+        <button class="btn btn-success" id="submit">Submit</button>
+        <button class="btn btn-info" onclick="window.location.reload(true)">Cancel</button>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $('#submit').on('click', function () {
+                let empId = $('#emp_id').val();
+                let empName = $('#emp_name').val();
+                let unAnswered = false;
+                let submitAnswers = true;
+
+                //validations 
+                //for employee id, name and un-answered questions before submitting.
+                if (empId === '' || empName === '') {
+                    alert("Please enter Employee Details");
+                    return;
+                }
+
+                if (isNaN(empId)) {
+                    alert("Enter a valid Number");
+                    return;
+                }
+
+                $('.question_id').each(function () {
+                    let questionAnswered = $("input[type=radio][name='" + $(this).val() + "']:checked").length > 0;
+                    unAnswered = unAnswered ? unAnswered : !questionAnswered;
+                });
+
+                if (unAnswered) {
+                    submitAnswers = confirm("Some of the questions are un-answered. \n Do you want to Continue.?");
+                }
+
+                if (!submitAnswers)
+                    return;
+
+                let answers = [];
+
+                $('.question_id').each(function () {
+                    let question_id = $(this).val();
+                    let validOption = $(this).parent().find('.valid-option').data('validoption')
+                    let questionAnswered = $("input[type=radio][name='" + $(this).val() + "']:checked");
+                    if (questionAnswered.length > 0) {
+                        let answer = {};
+                        answer.emp_id = empId;
+                        answer.question_id = question_id;
+                        answer.submitted_option_id = questionAnswered.val();
+                        answer.option_id = validOption;
+                        answers.push(answer);
+                    }
+                });
+
+                $.ajax({
+                    url: "SubmitAnswers",
+                    data: { submittedAnswers: answers },
+                    type: "POST",
+                    success: function (resp) {
+                        alert("Data saved successfully...!");
+                        window.location.reload(true);
+                        console.log("success");
+                        console.log(resp);
+                    },
+                    error: function (resp) {
+                        alert("Some error occured");
+                        console.log("error");
+                        console.log(resp);
+                    },
+                    failure: function (resp) {
+                        alert("Some error occured");
+                        console.log("error");
+                        console.log(resp);
+                    }              
+                });
+
+
+            })
+        });
+    </script>

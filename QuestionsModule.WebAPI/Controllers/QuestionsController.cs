@@ -38,12 +38,16 @@ namespace QuestionsModule.WebAPI.Controllers
             foreach (var item in submittedOptions)
             {
                 if (submitOptionsRepository.Save(item))
-                    return Ok(HttpStatusCode.Created);
+                {
+                    continue;
+                }
                 else
-                    break;
+                {
+                    return Ok(HttpStatusCode.InternalServerError);                   
+                }
             }
-            return Ok(HttpStatusCode.InternalServerError);
-           
+            return Ok(HttpStatusCode.Created);
+
         }
     }
 }

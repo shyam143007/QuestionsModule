@@ -1,0 +1,18 @@
+﻿@using QuestionsModule.AspMVC.Models;
+@using System.Collections.Generic;
+
+@model List<Options>
+
+@foreach (var option in Model)
+{
+    <div class="">
+        @if (option.is_correct_option ?? false)
+        {
+            <input type="hidden" class="valid-option" data-question="@option.question_id" data-validoption="@option.id" />            
+        }
+        
+        <input type="radio" name="@option.question_id" value="@option.id" />
+        @Html.DisplayFor(model=> option.option_text)
+    </div>
+}
+

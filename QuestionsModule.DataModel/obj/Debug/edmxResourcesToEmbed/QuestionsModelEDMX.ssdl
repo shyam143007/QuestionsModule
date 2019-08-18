@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Options">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="option_text" Type="nvarchar" MaxLength="500" />
+    <Property Name="question_id" Type="int" Nullable="false" />
+    <Property Name="is_correct_option" Type="bit" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="question_text" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="SubmittedAnswers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_id" Type="int" />
+    <Property Name="question_id" Type="int" />
+    <Property Name="option_id" Type="int" />
+    <Property Name="submitted_option_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Tbl_Emp">
+    <Key>
+      <PropertyRef Name="EmpId" />
+    </Key>
+    <Property Name="EmpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salary" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Options__questio__66603565">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+    <End Role="Options" Type="Self.Options" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Options">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Submitted__emp_i__693CA210">
+    <End Role="Tbl_Emp" Type="Self.Tbl_Emp" Multiplicity="0..1" />
+    <End Role="SubmittedAnswers" Type="Self.SubmittedAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Emp">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="SubmittedAnswers">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Submitted__optio__6B24EA82">
+    <End Role="Options" Type="Self.Options" Multiplicity="0..1" />
+    <End Role="SubmittedAnswers" Type="Self.SubmittedAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Options">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SubmittedAnswers">
+        <PropertyRef Name="option_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Submitted__quest__6A30C649">
+    <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+    <End Role="SubmittedAnswers" Type="Self.SubmittedAnswers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Questions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SubmittedAnswers">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestDbModelStoreContainer">
+    <EntitySet Name="Options" EntityType="Self.Options" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubmittedAnswers" EntityType="Self.SubmittedAnswers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Emp" EntityType="Self.Tbl_Emp" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Options__questio__66603565" Association="Self.FK__Options__questio__66603565">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="Options" EntitySet="Options" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Submitted__emp_i__693CA210" Association="Self.FK__Submitted__emp_i__693CA210">
+      <End Role="Tbl_Emp" EntitySet="Tbl_Emp" />
+      <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Submitted__optio__6B24EA82" Association="Self.FK__Submitted__optio__6B24EA82">
+      <End Role="Options" EntitySet="Options" />
+      <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Submitted__quest__6A30C649" Association="Self.FK__Submitted__quest__6A30C649">
+      <End Role="Questions" EntitySet="Questions" />
+      <End Role="SubmittedAnswers" EntitySet="SubmittedAnswers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

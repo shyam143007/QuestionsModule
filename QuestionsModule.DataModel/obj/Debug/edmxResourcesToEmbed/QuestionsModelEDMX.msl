@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestDbModelStoreContainer" CdmEntityContainer="TestDbEntities">
+    <EntitySetMapping Name="Options">
+      <EntityTypeMapping TypeName="TestDbModel.Option">
+        <MappingFragment StoreEntitySet="Options">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="option_text" ColumnName="option_text" />
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+          <ScalarProperty Name="is_correct_option" ColumnName="is_correct_option" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="TestDbModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="question_text" ColumnName="question_text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubmittedAnswers">
+      <EntityTypeMapping TypeName="TestDbModel.SubmittedAnswer">
+        <MappingFragment StoreEntitySet="SubmittedAnswers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+          <ScalarProperty Name="option_id" ColumnName="option_id" />
+          <ScalarProperty Name="submitted_option_id" ColumnName="submitted_option_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Emp">
+      <EntityTypeMapping TypeName="TestDbModel.Tbl_Emp">
+        <MappingFragment StoreEntitySet="Tbl_Emp">
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
